@@ -6,7 +6,7 @@ houdiniUtils() {
 
     # Check if the environment is already activated
     if [[ "$VIRTUAL_ENV" != "" ]]; then
-        if [ -z "$optional_command" = "-e" ]; then
+        if [ "$optional_command" = "-e" ]; then
             # Run environment setup only
             if [[ -z "$PYTHONPATH" && -z "$DYLD_INSERT_LIBRARIES" ]]; then
                 export PYTHONPATH="/Applications/Houdini/Houdini${houdini_version}/Frameworks/Houdini.framework/Versions/Current/Resources/houdini/python3.10libs"
@@ -64,5 +64,4 @@ houdiniUtils() {
         fi
     fi
 }
-
 
