@@ -44,6 +44,7 @@ houdiniUtils() {
 
                 cd "/Applications/Houdini/Houdini${houdini_version}/Frameworks/Houdini.framework/Versions/Current/Resources" || return 1
                 source ./houdini_setup || return 1
+                cd - || return 1
 
             elif [ "$optional_command" = "-hou" ]; then
                 # Run environment setup and importhou.py script
