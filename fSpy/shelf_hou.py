@@ -29,18 +29,18 @@ Now, the 'fspy import' tool on your shelf should be ready to use for importing c
 '''
 
 
-from fSpy import fspy
+import houdiniUtils
 from importlib import reload
-reload(fspy)
-fspy_cam1 = fspy.fSpy()
-json_path = fspy_cam1.get_json()
+reload(houdiniUtils.fSpy)
+fspy_cam = houdiniUtils.fSpy.fSpy()
+json_path = fspy_cam.get_json()
 def create_camera():
     if json_path:
-        fspy_cam1.get_image()
-        fspy_cam1.get_cam_inputs()
-        fspy_cam1.get_fspy_data()
-        fspy_cam1.create_fspy_cam()
+        fspy_cam.get_image()
+        fspy_cam.get_cam_inputs()
+        fspy_cam.get_fspy_data()
+        fspy_cam.create_fspy_cam()
     else:
         return
-
+         
 create_camera()
