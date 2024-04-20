@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "houdiniutils"
+name = "scripts"
 version = "0.1.0"
-description = "Houdini Utilities and toolset written in Python"
-authors = ["Suhail"]
+description = "All related tools and utilities"
+authors = ["Suhail <suhailece@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 
@@ -18,7 +18,7 @@ seaborn = "^0.13.2"
 certifi = "^2024.2.2"
 
 
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
