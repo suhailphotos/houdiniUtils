@@ -155,5 +155,3 @@ class fSpy_Cam:
                         continue
                     cam_parms.lock(True)
 
-
-
