@@ -1,0 +1,42 @@
+{
+    "baseColor": {
+        "label": "Base Color",
+        "value": "baseColor"
+    },
+    "metallic": {
+        "label": "Metallic",
+        "value": "metallic"
+    },
+    "roughness": {
+        "label": "Roughness",
+        "value": "roughness"
+    },
+    "normal": {
+        "label": "Normal",
+        "value": "normal"
+    },
+    "displacement": {
+        "label": "Height",
+        "value": "height"
+    },
+    "emission": {
+        "label": "Emission",
+        "value": "emission"
+    },
+    "sss":{
+        "label": "Subsurface Scatter",
+        "value": "sss"
+    },
+    "alpha": {
+        "label": "Alpha",
+        "value": "alpha"
+    },
+    "refraction": {
+        "label": "Refraction",
+        "value": "refraction"
+    },
+    "ao": {
+        "label": "Ambient Occlusion",
+        "value": "ao"
+    }
+}
