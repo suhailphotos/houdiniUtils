@@ -17,7 +17,7 @@
     },
     "normal": {
         "label": "Normal",
-        "pattern": "*normal*,*norm*, *NRM*"
+        "pattern": "*normal*,*norm*, *NRM*1"
     },
     "displacement": {
         "label": "Height",
@@ -35,7 +35,7 @@
         "label": "Refraction",
         "pattern": "*refract*"
     },
-     "reflection": {
+    "reflection": {
         "label": "Reflection",
         "pattern": "*refl*"
     },

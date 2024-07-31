@@ -10,6 +10,7 @@ class TextureIDManager:
             self.config_file = config_file
         
         self.textureType = self._load_texture_types()
+        self.asset_name = ''
         self._get_texture_types()
         
     def _load_texture_types(self):
@@ -43,6 +44,7 @@ class TextureIDManager:
         self.user_input_values = user_input_values
 
         if user_input_button == default_choice:
+            self.asset_name = user_input_values[0]  # Asset Name is the first input
             updated = False
             for idx, key in enumerate(self.textureType.keys()):
                 new_value = user_input_values[idx + 1]  # +1 to skip 'Asset Name'

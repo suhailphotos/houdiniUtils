@@ -4,8 +4,9 @@ import json
 import hou
 
 class RenameTexture:
-    def __init__(self, sourceFolder: str = None, old_file_name: bool = True, **kwargs):
+    def __init__(self, sourceFolder: str = None, old_file_name: bool = True, asset_name: str = None, **kwargs):
         self.old_file_name = old_file_name
+        self.asset_name = asset_name
         if not sourceFolder:
             self._get_source_folder()
         else:
@@ -63,7 +64,7 @@ class RenameTexture:
                     regex_patterns = [pattern.replace('*', '.*') for pattern in patterns]
                     regex_pattern = '|'.join(regex_patterns)
                     if re.search(regex_pattern, file_name, re.IGNORECASE):
-                        new_file_base = f'{folder_name}_{key}'
+                        new_file_base = f'{self.asset_name}_{folder_name}_{key}' if self.asset_name else f'{folder_name}_{key}'
                         if new_file_base not in rename_plan:
                             rename_plan[new_file_base] = []
                         rename_plan[new_file_base].append((file_name, file_ext))
@@ -84,7 +85,7 @@ class RenameTexture:
                     rename_log.append({"old_name": file_name + file_ext, "new_name": new_file_name})
 
                 os.rename(old_file_path, new_file_path)
-                print(f"Renamed {old_file_path} to {new_file_path}")
+                print(f"Renamed {file_name + file_ext} to {new_file_name}")
 
         if self.old_file_name and rename_log:
             log_file_path = os.path.join(folder_path, f'{folder_name}_rename_log.json')
