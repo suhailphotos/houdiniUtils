@@ -1,21 +1,32 @@
 import os
 import json
 import hou
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
 
 class TextureIDManager:
     def __init__(self, config_file: str = 'textureID.json', config_file_path: str = None):
         if config_file_path:
             self.config_file = os.path.join(config_file_path, config_file)
         else:
-            self.config_file = config_file
+            self.config_file = os.path.join(os.getcwd(), config_file)
         
         self.textureType = self._load_texture_types()
         self.asset_name = ''
         self._get_texture_types()
         
     def _load_texture_types(self):
-        with open(self.config_file, 'r') as f:
-            return json.load(f)
+        try:
+            with open(self.config_file, 'r') as f:
+                return json.load(f)
+        except FileNotFoundError:
+            logging.error(f"Configuration file {self.config_file} not found.")
+            return {}
+        except json.JSONDecodeError:
+            logging.error(f"Error decoding JSON from configuration file {self.config_file}.")
+            return {}
 
     def _get_texture_types(self):
         message = 'Set Texture ID names. No Spaces Allowed!'
@@ -55,5 +66,8 @@ class TextureIDManager:
                 self._save_texture_types()
 
     def _save_texture_types(self):
-        with open(self.config_file, 'w') as f:
-            json.dump(self.textureType, f, indent=4)
+        try:
+            with open(self.config_file, 'w') as f:
+                json.dump(self.textureType, f, indent=4)
+        except Exception as e:
+            logging.error(f"Error saving configuration to {self.config_file}: {e}")

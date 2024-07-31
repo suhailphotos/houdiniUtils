@@ -17,7 +17,7 @@
     },
     "normal": {
         "label": "Normal",
-        "pattern": "*normal*,*norm*, *NRM*1"
+        "pattern": "*normal*,*norm*, *NRM*, *NOR*"
     },
     "displacement": {
         "label": "Height",
