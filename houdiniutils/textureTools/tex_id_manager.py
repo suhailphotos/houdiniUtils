@@ -19,7 +19,7 @@ class TextureIDManager:
     def _get_texture_types(self):
         message = 'Set Texture ID names. No Spaces Allowed!'
         input_labels = ["Asset Name:"] + [f"{data['label']}:" for data in self.textureType.values()]
-        initial_contents = [''] + [f"{data['value']}" for data in self.textureType.values()]
+        initial_contents = [''] + [f"{data['pattern']}" for data in self.textureType.values()]
 
         input_labels = tuple(input_labels)
         initial_contents = tuple(initial_contents)
@@ -46,8 +46,8 @@ class TextureIDManager:
             updated = False
             for idx, key in enumerate(self.textureType.keys()):
                 new_value = user_input_values[idx + 1]  # +1 to skip 'Asset Name'
-                if self.textureType[key]['value'] != new_value:
-                    self.textureType[key]['value'] = new_value
+                if self.textureType[key]['pattern'] != new_value:
+                    self.textureType[key]['pattern'] = new_value
                     updated = True
             if updated:
                 self._save_texture_types()

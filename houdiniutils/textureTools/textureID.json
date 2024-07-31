@@ -1,42 +1,46 @@
 {
     "baseColor": {
         "label": "Base Color",
-        "value": "baseColor"
+        "pattern": "*color*,*colour*,*diffuse*,*albedo*,*col*, *diff*"
     },
     "metallic": {
         "label": "Metallic",
-        "value": "metallic"
+        "pattern": "*metal*"
     },
     "roughness": {
         "label": "Roughness",
-        "value": "roughness"
+        "pattern": "*rough*"
+    },
+    "glossiness": {
+        "label": "Glossiness",
+        "pattern": "*gloss*"
     },
     "normal": {
         "label": "Normal",
-        "value": "normal"
+        "pattern": "*normal*,*norm*, *NRM*"
     },
     "displacement": {
         "label": "Height",
-        "value": "height"
+        "pattern": "*height*,*disp*"
     },
     "emission": {
         "label": "Emission",
-        "value": "emission"
-    },
-    "sss":{
-        "label": "Subsurface Scatter",
-        "value": "sss"
+        "pattern": "*emit*,*emission*"
     },
     "alpha": {
         "label": "Alpha",
-        "value": "alpha"
+        "pattern": "*alpha*"
     },
     "refraction": {
         "label": "Refraction",
-        "value": "refraction"
+        "pattern": "*refract*"
+    },
+     "reflection": {
+        "label": "Reflection",
+        "pattern": "*refl*"
     },
     "ao": {
         "label": "Ambient Occlusion",
-        "value": "ao"
+        "pattern": "*ao*,*ambient*"
     }
 }
