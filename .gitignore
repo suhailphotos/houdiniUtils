@@ -10,6 +10,8 @@ __pycache__/
 .DS_Store
 
 # Distribution / packaging
+poetry.lock
+pyproject.toml
 .Python
 build/
 develop-eggs/
