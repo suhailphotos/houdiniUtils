@@ -4,7 +4,7 @@
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/houdiniUtils.git
+   git clone https://github.com/suhailphotos/houdiniUtils.git 
    ```
 
 2. **Navigate to the `houdiniUtils` Directory**:
