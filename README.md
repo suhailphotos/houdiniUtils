@@ -1,50 +1,107 @@
-# Houdini Utils
+# houdiniUtils
 
-## Installation
+This package provides a collection of utilities for Houdini, including tools for managing texture IDs and renaming textures based on specified patterns.
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/suhailphotos/houdiniUtils.git 
-   ```
+* [houdiniUtils](#houdiniUtils)
+* [Package Description](#package-description)
+* [Usage](#usage)
+* [Installation](#installation)
+* [Testing](#testing)
+* [Development/Contributing](#developmentcontributing)
+* [History](#history)
+* [Credits](#credits)
+* [License](#license)
+* [FAQ](#faq)
 
-2. **Navigate to the `houdiniUtils` Directory**:
-   ```bash
-   cd houdiniUtils
-   ```
+## Package Description
+* [houdiniUtils](#houdiniUtils)
 
-3. **Install the Package**:
-   ```bash
-   pip install .
-   ```
+This package includes tools to manage texture IDs and rename texture files based on specified patterns.
 
-4. **Add the Package to PYTHONPATH**:
-   Ensure your `houdiniUtils` package is in the Python path. Add the following line to your Houdini environment file (`houdini.env`):
-   ```bash
-   HOUDINI_PATH = /path/to/houdiniUtils;&
-   ```
+### Usage
+* [houdiniUtils](#houdiniUtils)
 
-5. **Import the Shelf Tool in Houdini**:
-   - Open Houdini.
-   - Go to `Windows > Shell Tools`.
-   - Import the provided `houUtils.shelf` file from `HOUDINI_USER_PREF_DIR/toolbar/`.
+#### In a Script
+You can use the package in a script as follows:
 
-6. **Use the Tools**:
-   - The tools should now be available in Houdini's shelf under the `houUtils` section.
+```python
+from houdiniutils.textureTools import tex_id_manager, renameTexture
 
-## Usage
+# Initialize TextureIDManager
+texid = tex_id_manager.TextureIDManager(config_file_path='path/to/textureID.json')
 
-1. **Texture ID Manager**:
-   - Open the `Texture ID Manager` tool from the shelf.
-   - Follow the prompts to set the texture ID names.
+# Initialize RenameTexture with textureTypes and asset name
+renObj = renameTexture.RenameTexture(textureTypes=texid.textureType, asset_name=texid.asset_name)
+renObj.renameFolders()
+```
 
-2. **Rename Texture**:
-   - Open the `Rename Texture` tool from the shelf.
-   - Follow the prompts to rename texture files according to the specified patterns.
+### Installation
+* [houdiniUtils](#houdiniUtils)
 
-## Contributing
+Install the package with:
+```bash
+pip install houdiniUtils
+```
 
-If you find any issues or have suggestions for improvement, please open an issue or submit a pull request on GitHub.
+To install from source and develop:
+```
+git clone https://github.com/suhailphotos/houdiniUtils.git
+cd houdiniUtils
+pip install wheel --upgrade
+pip install -r requirements.txt --upgrade
+python setup.py sdist bdist_wheel
+python setup.py develop
+```
+
+### System Requirements
+* [houdiniUtils](#houdiniUtils)
+
+Must have Houdini installed. This package is compatible with Linux, macOS, and Windows.
+
+## Testing
+* [houdiniUtils](#houdiniUtils)
+
+Run tests on install by doing:
+```bash
+pip install houdiniUtils --force --install-option test
+```
+
+You can test the package if in development by moving/cd into the directory where setup.py is located and running:
+```bash
+python setup.py test
+```
+
+To test a specific submodule, cd into that submodule and run:
+```bash
+pytest
+```
+
+## Development/Contributing
+* [houdiniUtils](#houdiniUtils)
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request
+
+## History
+* [houdiniUtils](#houdiniUtils)
+   * 0.1.0 - Initial commit
+
+## Credits
+* [houdiniUtils](#houdiniUtils)
+
+Thanks to the Houdini community for the inspiration and resources.
 
 ## License
+* [houdiniUtils](#houdiniUtils)
 
-This project is licensed under the MIT License.
+MIT License
+
+## FAQ
+* [houdiniUtils](#houdiniUtils)
+
+Q: What is this package for?
+
+A: This package provides utilities for managing textures and other assets in Houdini.
