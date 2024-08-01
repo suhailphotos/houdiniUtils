@@ -1,3 +1,25 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+__author__ = "Suhail"
+__credits__ = ["Suhail"]
+__Lisence__ = "MIT"
+__maintainer__ = "Suhail"
+__email__ = "suhahilece@gmail.com"
+__status__ = "Development"
+__version__ = "0.1.0"
+
+"""
+renameTexture.py
+----------------
+This module contains the RenameTexture class for renaming texture files based on specified patterns.
+
+Author: Suhail
+License: MIT
+"""
+
+# Default python packages
+
 import os
 import re
 import json

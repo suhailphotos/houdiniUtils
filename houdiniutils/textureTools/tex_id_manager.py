@@ -1,3 +1,26 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+__author__ = "Suhail"
+__credits__ = ["Suhail"]
+__Lisence__ = "MIT"
+__maintainer__ = "Suhail"
+__email__ = "suhahilece@gmail.com"
+__status__ = "Development"
+__version__ = "0.1.0"
+
+"""
+tex_id_manager.py
+-----------------
+This module contains the TextureIDManager class for managing texture ID patterns.
+
+Author: Suhail
+License: MIT
+"""
+
+# Default python packages
+
+
 import os
 import json
 import hou
