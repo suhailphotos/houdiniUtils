@@ -26,7 +26,6 @@ from houdiniutils.textureTools import tex_id_manager, renameTexture
 def main():
     # Set the config file path
     config_file_path = os.path.dirname(__file__)
-    print(config_file_path)
 
     # Initialize TextureIDManager
     texid = tex_id_manager.TextureIDManager(config_file_path=config_file_path)
