@@ -1,3 +1,4 @@
+
 # houdiniUtils
 
 This package provides a collection of utilities for Houdini, including tools for managing texture IDs and renaming textures based on specified patterns.
@@ -6,7 +7,7 @@ This package provides a collection of utilities for Houdini, including tools for
 
 Install the package with:
 ```bash
-pip install houdiniUtils
+pip install houdiniutils
 ```
 
 ## Setup
@@ -15,45 +16,32 @@ pip install houdiniUtils
    Download the `houUtils.shelf` file from [this link](https://github.com/suhailphotos/houdiniUtils/blob/36c5893a1dcd1949c12b66942708bc425d1d993b/houdiniutils/textureTools/houdiniUtils.shelf).
 
 2. **Copy the Houdini Shelf Tool**:
-   Copy the downloaded `houUtils.shelf` file to the `HOUDINI_USER_PREF_DIR/toolbar` directory. The `HOUDINI_USER_PREF_DIR` is typically located in your home directory under `houdiniX.Y` (e.g., `~/houdini20.5`).
+   Copy the downloaded `houdiniUtils.shelf` file to the `HOUDINI_USER_PREF_DIR/toolbar` directory. The `HOUDINI_USER_PREF_DIR` is typically located in your home directory under `houdiniX.Y` (e.g., `~/houdini20.5`).
 
-   ```bash
-   cp <your_downloads_folder>/houUtils.shelf $HOUDINI_USER_PREF_DIR/toolbar/
-   ```
-
-3. **Update the Houdini Environment File**:
-   Add the following line to your Houdini environment file (`houdini.env`). This file is usually located in the same directory as `HOUDINI_USER_PREF_DIR`.
-
-   Replace `<site-packages-path>` with the actual path where the `site-packages` directory is located on your system.
-
-   ```bash
-   HOUDINI_PATH = <site-packages-path>/houdiniutils;&
-   ```
-
-   To find the `site-packages` path, you can use the following Python command:
-   ```bash
-   python -c "import site; print(site.getsitepackages())"
-   ```
-
-   This will output the path(s) to the `site-packages` directory. Use the appropriate path from the output.
-
-## Usage
-
-### In a Script
-
-You can use the package in a script as follows:
-
-```python
-from houdiniutils.textureTools import tex_id_manager, renameTexture
-
-# Initialize TextureIDManager
-texid = tex_id_manager.TextureIDManager(config_file_path='path/to/config/folder')
-
-# Initialize RenameTexture with textureTypes and asset name
-renObj = renameTexture.RenameTexture(textureTypes=texid.textureType, asset_name=texid.asset_name)
-renObj.renameFolders()
+```powershell
+cp <your_downloads_folder>/houUtils.shelf $HOUDINI_USER_PREF_DIR/toolbar/
 ```
 
-## License
+3. **Create the `houdiniUtils.json` File**:
 
-MIT License
+   Run the following Python command to determine the site-packages path and create the `houdiniUtils.json` file:
+
+```powershell
+python -c "import site, json; path = [p.replace('\\', '/') for p in site.getsitepackages() if 'site-packages' in p][0]; config = {'env': [{'PYTHONPATH': [path]}]}; with open('houdiniUtils.json', 'w') as f: json.dump(config, f, indent=4)"
+```
+
+   This command does the following:
+   - Imports necessary modules.
+   - Finds and formats the site-packages path.
+   - Creates a JSON configuration with the `PYTHONPATH` set to the site-packages path.
+   - Writes the configuration to a `houdiniUtils.json` file.
+
+4. **Copy the `houdiniUtils.json` File**:
+
+   Copy the generated `houdiniUtils.json` file to the `packages` folder in your Houdini user preferences directory:
+
+```powershell
+cp houdiniUtils.json $HOUDINI_USER_PREF_DIR/packages/
+```
+
+By following these steps, you will have set up the `houdiniUtils` package and configured the necessary environment variables for Houdini.
