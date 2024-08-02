@@ -1,0 +1,9 @@
+{
+    "env": [
+        {
+            "PYTHONPATH": [
+                "/Users/suhail/Library/Caches/pypoetry/virtualenvs/houdiniutils-QsSXdRLr-py3.11/lib/python3.11/site-packages"
+            ]
+        }
+    ]
+}

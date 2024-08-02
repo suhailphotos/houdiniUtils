@@ -33,7 +33,7 @@ python -c 'import site, json; path = [p.replace("\\", "/") for p in site.getsite
    For Windows, run the following Python command to determine the site-packages path and create the `houdiniUtils.json` file:
 
 ```powershell
-python -c "import site, json; path = [p.replace('\', '/') for p in site.getsitepackages() if 'site-packages' in p][0]; config = {'env': [{'PYTHONPATH': [path]}]}; f = open('houdiniUtils.json', 'w'); json.dump(config, f, indent=4); f.close()"
+python -c "import site, json; path = [p.replace('\\', '/') for p in site.getsitepackages() if 'site-packages' in p][0]; config = {'env': [{'PYTHONPATH': [path]}]}; f = open('houdiniUtils.json', 'w'); json.dump(config, f, indent=4); f.close()"
 ```
 
    These commands do the following:
