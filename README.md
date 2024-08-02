@@ -15,10 +15,10 @@ pip install houdiniUtils
    Download the `houUtils.shelf` file from [this link](https://github.com/suhailphotos/houdiniUtils/blob/36c5893a1dcd1949c12b66942708bc425d1d993b/houdiniutils/textureTools/houdiniUtils.shelf).
 
 2. **Copy the Houdini Shelf Tool**:
-   Copy the downloaded `houUtils.shelf` file to the `HOUDINI_USER_PREF_DIR/toolbar` directory. The `HOUDINI_USER_PREF_DIR` is typically located in your home directory under `houdiniX.Y` (e.g., `~/houdini19.5`).
+   Copy the downloaded `houUtils.shelf` file to the `HOUDINI_USER_PREF_DIR/toolbar` directory. The `HOUDINI_USER_PREF_DIR` is typically located in your home directory under `houdiniX.Y` (e.g., `~/houdini20.5`).
 
    ```bash
-   cp path/to/downloaded/houUtils.shelf $HOUDINI_USER_PREF_DIR/toolbar/
+   cp <your_downloads_folder>/houUtils.shelf $HOUDINI_USER_PREF_DIR/toolbar/
    ```
 
 3. **Update the Houdini Environment File**:
