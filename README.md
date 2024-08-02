@@ -24,17 +24,23 @@ cp <your_downloads_folder>/houUtils.shelf $HOUDINI_USER_PREF_DIR/toolbar/
 
 3. **Create the `houdiniUtils.json` File**:
 
-   Run the following Python command to determine the site-packages path and create the `houdiniUtils.json` file:
+   For macOS, run the following Python command to determine the site-packages path and create the `houdiniUtils.json` file:
 
-```powershell
-python -c "import site, json; path = [p.replace('\\', '/') for p in site.getsitepackages() if 'site-packages' in p][0]; config = {'env': [{'PYTHONPATH': [path]}]}; with open('houdiniUtils.json', 'w') as f: json.dump(config, f, indent=4)"
+```bash
+python -c 'import site, json; path = [p.replace("\\", "/") for p in site.getsitepackages() if "site-packages" in p][0]; config = {"env": [{"PYTHONPATH": [path]}]}; f = open("houdiniUtils.json", "w"); json.dump(config, f, indent=4); f.close()'
 ```
 
-   This command does the following:
-   - Imports necessary modules.
-   - Finds and formats the site-packages path.
-   - Creates a JSON configuration with the `PYTHONPATH` set to the site-packages path.
-   - Writes the configuration to a `houdiniUtils.json` file.
+   For Windows, run the following Python command to determine the site-packages path and create the `houdiniUtils.json` file:
+
+```powershell
+python -c "import site, json; path = [p.replace('\', '/') for p in site.getsitepackages() if 'site-packages' in p][0]; config = {'env': [{'PYTHONPATH': [path]}]}; f = open('houdiniUtils.json', 'w'); json.dump(config, f, indent=4); f.close()"
+```
+
+   These commands do the following:
+   - Import necessary modules.
+   - Find and format the site-packages path.
+   - Create a JSON configuration with the `PYTHONPATH` set to the site-packages path.
+   - Write the configuration to a `houdiniUtils.json` file.
 
 4. **Copy the `houdiniUtils.json` File**:
 
