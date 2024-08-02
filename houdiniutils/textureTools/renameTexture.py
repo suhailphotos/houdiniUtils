@@ -54,7 +54,9 @@ class RenameTexture:
         try:
             is_single_folder = all(os.path.isfile(os.path.join(self.sourceFolder, item)) for item in os.listdir(self.sourceFolder))
             if is_single_folder:
-                self._rename_files_in_folder(self.sourceFolder)
+                folder_name = os.path.basename(self.sourceFolder)
+                logging.info(f"Renaming files in single folder: {self.sourceFolder}, folder name: {folder_name}")
+                self._rename_files_in_folder(self.sourceFolder, folder_name)
             else:
                 for root, dirs, files in os.walk(self.sourceFolder):
                     if root == self.sourceFolder:
@@ -70,6 +72,11 @@ class RenameTexture:
         parent_folder = os.path.dirname(folder_path)
         folder_name = os.path.basename(folder_path)
         new_folder_name = re.sub(r'[.\s-]', '_', folder_name)
+        logging.info(f"Processing folder: {folder_path}, new folder name: {new_folder_name}")
+        if not new_folder_name:
+            logging.error(f"New folder name is empty for folder: {folder_path}")
+            return
+
         new_folder_path = os.path.join(parent_folder, new_folder_name)
         
         try:
@@ -77,8 +84,12 @@ class RenameTexture:
                 os.rename(folder_path, new_folder_path)
                 logging.info(f"Renamed folder {folder_path} to {new_folder_path}")
                 folder_path = new_folder_path
+        except PermissionError:
+            logging.error(f"Permission denied while renaming folder {folder_path} to {new_folder_path}")
+            return
         except Exception as e:
             logging.error(f"Error renaming folder {folder_path} to {new_folder_path}: {e}")
+            return
         
         self._rename_files_in_folder(folder_path, new_folder_name)
 
@@ -117,16 +128,26 @@ class RenameTexture:
                     if self.old_file_name:
                         rename_log.append({"old_name": file_name + file_ext, "new_name": new_file_name})
 
-                    os.rename(old_file_path, new_file_path)
-                    logging.info(f"Renamed {file_name + file_ext} to {new_file_name}")
+                    try:
+                        os.rename(old_file_path, new_file_path)
+                        logging.info(f"Renamed {file_name + file_ext} to {new_file_name}")
+                    except PermissionError:
+                        logging.error(f"Permission denied while renaming file {old_file_path} to {new_file_path}")
+                    except Exception as e:
+                        logging.error(f"Error renaming file {old_file_path} to {new_file_path}: {e}")
 
             if self.old_file_name and rename_log:
                 log_file_path = os.path.join(folder_path, f'{folder_name}_rename_log.json')
-                with open(log_file_path, 'w') as log_file:
-                    json.dump(rename_log, log_file, indent=4)
-                logging.info(f"Rename log saved to {log_file_path}")
+                try:
+                    with open(log_file_path, 'w') as log_file:
+                        json.dump(rename_log, log_file, indent=4)
+                    logging.info(f"Rename log saved to {log_file_path}")
+                except PermissionError:
+                    logging.error(f"Permission denied while saving rename log to {log_file_path}")
+                except Exception as e:
+                    logging.error(f"Error saving rename log to {log_file_path}: {e}")
 
+        except PermissionError:
+            logging.error(f"Permission denied while accessing folder {folder_path}")
         except Exception as e:
             logging.error(f"Error during renaming files in folder {folder_path}: {e}")
-
-
