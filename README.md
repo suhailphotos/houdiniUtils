@@ -43,6 +43,15 @@ Install the package with:
 pip install houdiniUtils
 ```
 
+This will automatically copy the scripts to `~/suhailphotos/houdiniUtils`.
+
+To complete the setup:
+1. Copy the `houUtils.shelf` file to the `HOUDINI_USER_PREF_DIR/toolbar` directory.
+2. Add the following line to your Houdini environment file (`houdini.env`):
+   ```bash
+   HOUDINI_PATH = ~/suhailphotos/houdiniUtils;&
+   ```
+
 To install from source and develop:
 ```
 git clone https://github.com/suhailphotos/houdiniUtils.git
