@@ -2,115 +2,58 @@
 
 This package provides a collection of utilities for Houdini, including tools for managing texture IDs and renaming textures based on specified patterns.
 
-* [houdiniUtils](#houdiniUtils)
-* [Package Description](#package-description)
-* [Usage](#usage)
-* [Installation](#installation)
-* [Testing](#testing)
-* [Development/Contributing](#developmentcontributing)
-* [History](#history)
-* [Credits](#credits)
-* [License](#license)
-* [FAQ](#faq)
-
-## Package Description
-* [houdiniUtils](#houdiniUtils)
-
-This package includes tools to manage texture IDs and rename texture files based on specified patterns.
-
-### Usage
-* [houdiniUtils](#houdiniUtils)
-
-#### In a Script
-You can use the package in a script as follows:
-
-```python
-from houdiniutils.textureTools import tex_id_manager, renameTexture
-
-# Initialize TextureIDManager
-texid = tex_id_manager.TextureIDManager(config_file_path='path/to/textureID.json')
-
-# Initialize RenameTexture with textureTypes and asset name
-renObj = renameTexture.RenameTexture(textureTypes=texid.textureType, asset_name=texid.asset_name)
-renObj.renameFolders()
-```
-
-### Installation
-* [houdiniUtils](#houdiniUtils)
+## Installation
 
 Install the package with:
 ```bash
 pip install houdiniUtils
 ```
 
-This will automatically copy the scripts to `~/suhailphotos/houdiniUtils`.
+## Setup
 
-To complete the setup:
-1. Copy the `houUtils.shelf` file to the `HOUDINI_USER_PREF_DIR/toolbar` directory.
-2. Add the following line to your Houdini environment file (`houdini.env`):
+1. **Download the Houdini Shelf Tool**:
+   Download the `houUtils.shelf` file from [this link](path/to/houUtils.shelf).
+
+2. **Copy the Houdini Shelf Tool**:
+   Copy the downloaded `houUtils.shelf` file to the `HOUDINI_USER_PREF_DIR/toolbar` directory. The `HOUDINI_USER_PREF_DIR` is typically located in your home directory under `houdiniX.Y` (e.g., `~/houdini19.5`).
+
    ```bash
-   HOUDINI_PATH = ~/suhailphotos/houdiniUtils;&
+   cp path/to/downloaded/houUtils.shelf $HOUDINI_USER_PREF_DIR/toolbar/
    ```
 
-To install from source and develop:
+3. **Update the Houdini Environment File**:
+   Add the following line to your Houdini environment file (`houdini.env`). This file is usually located in the same directory as `HOUDINI_USER_PREF_DIR`.
+
+   Replace `<site-packages-path>` with the actual path where the `site-packages` directory is located on your system.
+
+   ```bash
+   HOUDINI_PATH = <site-packages-path>/houdiniutils;&
+   ```
+
+   To find the `site-packages` path, you can use the following Python command:
+   ```bash
+   python -c "import site; print(site.getsitepackages())"
+   ```
+
+   This will output the path(s) to the `site-packages` directory. Use the appropriate path from the output.
+
+## Usage
+
+### In a Script
+
+You can use the package in a script as follows:
+
+```python
+from houdiniutils.textureTools import tex_id_manager, renameTexture
+
+# Initialize TextureIDManager
+texid = tex_id_manager.TextureIDManager(config_file_path='path/to/config/folder')
+
+# Initialize RenameTexture with textureTypes and asset name
+renObj = renameTexture.RenameTexture(textureTypes=texid.textureType, asset_name=texid.asset_name)
+renObj.renameFolders()
 ```
-git clone https://github.com/suhailphotos/houdiniUtils.git
-cd houdiniUtils
-pip install wheel --upgrade
-pip install -r requirements.txt --upgrade
-python setup.py sdist bdist_wheel
-python setup.py develop
-```
-
-### System Requirements
-* [houdiniUtils](#houdiniUtils)
-
-Must have Houdini installed. This package is compatible with Linux, macOS, and Windows.
-
-## Testing
-* [houdiniUtils](#houdiniUtils)
-
-Run tests on install by doing:
-```bash
-pip install houdiniUtils --force --install-option test
-```
-
-You can test the package if in development by moving/cd into the directory where setup.py is located and running:
-```bash
-python setup.py test
-```
-
-To test a specific submodule, cd into that submodule and run:
-```bash
-pytest
-```
-
-## Development/Contributing
-* [houdiniUtils](#houdiniUtils)
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request
-
-## History
-* [houdiniUtils](#houdiniUtils)
-   * 0.1.0 - Initial commit
-
-## Credits
-* [houdiniUtils](#houdiniUtils)
-
-Thanks to the Houdini community for the inspiration and resources.
 
 ## License
-* [houdiniUtils](#houdiniUtils)
 
 MIT License
-
-## FAQ
-* [houdiniUtils](#houdiniUtils)
-
-Q: What is this package for?
-
-A: This package provides utilities for managing textures and other assets in Houdini.
