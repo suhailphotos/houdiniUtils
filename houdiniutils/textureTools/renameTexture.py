@@ -7,7 +7,7 @@ __Lisence__ = "MIT"
 __maintainer__ = "Suhail"
 __email__ = "suhahilece@gmail.com"
 __status__ = "Development"
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 """
 renameTexture.py
