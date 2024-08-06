@@ -25,6 +25,7 @@ import re
 import json
 import hou
 import logging
+import platform
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -52,21 +53,38 @@ class RenameTexture:
             return
 
         try:
-            is_single_folder = all(os.path.isfile(os.path.join(self.sourceFolder, item)) for item in os.listdir(self.sourceFolder))
+            is_single_folder = all(
+                os.path.isfile(os.path.join(self.sourceFolder, item)) and not self._is_hidden_or_system_file(os.path.join(self.sourceFolder, item))
+                for item in os.listdir(self.sourceFolder)
+            )
             if is_single_folder:
                 folder_name = os.path.basename(self.sourceFolder)
                 logging.info(f"Renaming files in single folder: {self.sourceFolder}, folder name: {folder_name}")
                 self._rename_files_in_folder(self.sourceFolder, folder_name)
             else:
                 for root, dirs, files in os.walk(self.sourceFolder):
+                    # Filter out hidden and system files and directories
+                    dirs[:] = [d for d in dirs if not self._is_hidden_or_system_file(os.path.join(root, d))]
+                    files[:] = [f for f in files if not self._is_hidden_or_system_file(os.path.join(root, f))]
+                    
                     if root == self.sourceFolder:
                         for subdir in dirs:
                             subdir_path = os.path.join(root, subdir)
                             self._rename_folder_and_files(subdir_path)
-                # Rename the top-level folders
-                self._rename_folder_and_files(self.sourceFolder)
         except Exception as e:
             logging.error(f"Error during renaming folders: {e}")
+
+    def _is_hidden_or_system_file(self, file_path):
+        if platform.system() == 'Windows':
+            import ctypes
+            FILE_ATTRIBUTE_HIDDEN = 0x02
+            FILE_ATTRIBUTE_SYSTEM = 0x04
+            attrs = ctypes.windll.kernel32.GetFileAttributesW(file_path)
+            if attrs == -1:
+                return False
+            return bool(attrs & (FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM))
+        else:
+            return os.path.basename(file_path).startswith('.')
 
     def _rename_folder_and_files(self, folder_path):
         parent_folder = os.path.dirname(folder_path)
@@ -100,6 +118,8 @@ class RenameTexture:
         try:
             # First pass: collect rename plan and count occurrences
             for file in os.listdir(folder_path):
+                if self._is_hidden_or_system_file(os.path.join(folder_path, file)):
+                    continue  # Skip hidden and system files
                 file_path = os.path.join(folder_path, file)
                 if os.path.isfile(file_path):
                     file_name, file_ext = os.path.splitext(file)
