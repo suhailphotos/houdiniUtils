@@ -23,7 +23,6 @@ License: MIT
 import os
 import re
 import json
-import hou
 import logging
 import platform
 
@@ -41,6 +40,7 @@ class RenameTexture:
         self.textureTypes = kwargs.get('textureTypes', {})
 
     def _get_source_folder(self):
+        import hou
         start_directory = hou.getenv('HIP')
         title = 'Select root folder'
         file_type = hou.fileType.Directory

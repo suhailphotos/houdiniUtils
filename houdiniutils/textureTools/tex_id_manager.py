@@ -23,7 +23,6 @@ License: MIT
 
 import os
 import json
-import hou
 import logging
 
 # Configure logging
@@ -52,6 +51,7 @@ class TextureIDManager:
             return {}
 
     def _get_texture_types(self):
+        import hou
         message = 'Set Texture ID names. No Spaces Allowed!'
         input_labels = ["Asset Name:"] + [f"{data['label']}:" for data in self.textureType.values()]
         initial_contents = [''] + [f"{data['pattern']}" for data in self.textureType.values()]
