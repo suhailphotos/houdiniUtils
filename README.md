@@ -5,50 +5,44 @@ This package provides a collection of utilities for Houdini, including tools for
 
 ## Installation
 
-Install the package with:
+### 1. Ensure Python is Installed
+
+Before installing the `houdiniUtils` package, make sure Python is installed on your system. You can check this by running the following command in your terminal (macOS) or PowerShell (Windows):
+
+```bash
+python --version
+```
+
+or
+
+```bash
+python3 --version
+```
+
+If Python is not installed, you can download and install it from the official [Python website](https://www.python.org/downloads/).
+
+### 2. Install the Package
+
+You can install the `houdiniUtils` package either globally or within a virtual environment. However, we recommend using a virtual environment to avoid any potential conflicts, especially since Houdini 20.5.XXX uses Python 3.11.7.
+
+#### 2.1 Using a Virtual Environment
+
+To create and activate a virtual environment, follow the instructions provided in the [Python documentation on venv](https://docs.python.org/3/library/venv.html).
+
+After activating your virtual environment, you can install the package by running:
+
 ```bash
 pip install houdiniutils
 ```
 
-## Setup
+### 3. Run the Post-Installation Script
 
-1. **Download the Houdini Shelf Tool**:
-   Download the `houUtils.shelf` file from [this link](https://github.com/suhailphotos/houdiniUtils/blob/36c5893a1dcd1949c12b66942708bc425d1d993b/houdiniutils/textureTools/houdiniUtils.shelf).
+Once the package is installed, you need to generate and copy `houdiniUtils.shelf` to the toolbar directory and `houdiniUtils.json` to the packages directory within your Houdini user preferences directory. This can be done by running the following post-installation command:
 
-2. **Copy the Houdini Shelf Tool**:
-   Copy the downloaded `houdiniUtils.shelf` file to the `HOUDINI_USER_PREF_DIR/toolbar` directory. The `HOUDINI_USER_PREF_DIR` is typically located in your home directory under `houdiniX.Y` (e.g., `~/houdini20.5`).
+```bash
+houdiniutils_post_install
+```
 
-   ```powershell
-   cp <your_downloads_folder>/houUtils.shelf $HOUDINI_USER_PREF_DIR/toolbar/
-   ```
+This command will automatically detect your Houdini user preferences directory, create the necessary files, and place them in the appropriate locations.
 
-3. **Create the `houdiniUtils.json` File**:
-
-   ### macOS
-   For macOS, run the following Python command to determine the site-packages path and create the `houdiniUtils.json` file:
-
-   ```bash
-   python -c 'import site, json; path = [p.replace("\\", "/") for p in site.getsitepackages() if "site-packages" in p][0]; config = {"env": [{"PYTHONPATH": [path]}]}; f = open("houdiniUtils.json", "w"); json.dump(config, f, indent=4); f.close()'
-   ```
-
-   ### Windows
-   For Windows, run the following Python command to determine the site-packages path and create the `houdiniUtils.json` file:
-
-   ```powershell
-   python -c "import site, json; path = [p.replace('\\', '/') for p in site.getsitepackages() if 'site-packages' in p][0]; config = {'env': [{'PYTHONPATH': [path]}]}; f = open('houdiniUtils.json', 'w'); json.dump(config, f, indent=4); f.close()"
-   ```
-
-   These commands do the following:
-   - Import necessary modules.
-   - Find and format the site-packages path.
-   - Create a JSON configuration with the `PYTHONPATH` set to the site-packages path.
-   - Write the configuration to a `houdiniUtils.json` file.
-
-4. **Copy the `houdiniUtils.json` File**:
-   Copy the generated `houdiniUtils.json` file to the `packages` folder in your Houdini user preferences directory:
-
-   ```powershell
-   cp houdiniUtils.json $HOUDINI_USER_PREF_DIR/packages/
-   ```
-
-By following these steps, you will have set up the `houdiniUtils` package and configured the necessary environment variables for Houdini.
+By following these steps, you will have successfully set up the `houdiniUtils` package and configured the necessary environment variables for Houdini.
