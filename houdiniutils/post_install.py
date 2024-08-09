@@ -97,7 +97,7 @@ __Lisence__ = "MIT"
 __maintainer__ = "Suhail"
 __email__ = "suhailece@gmail.com"
 __status__ = "Development"
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 from houdiniutils.textureTools import main
 from importlib import reload
