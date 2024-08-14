@@ -7,7 +7,7 @@ __Lisence__ = "MIT"
 __maintainer__ = "Suhail"
 __email__ = "suhahilece@gmail.com"
 __status__ = "Development"
-__version__ = "0.1.1"
+__version__ = "0.1.4"
 
 """
 renameTexture.py
@@ -89,7 +89,7 @@ class RenameTexture:
     def _rename_folder_and_files(self, folder_path):
         parent_folder = os.path.dirname(folder_path)
         folder_name = os.path.basename(folder_path)
-        new_folder_name = re.sub(r'[.\s-]', '_', folder_name)
+        new_folder_name = re.sub(r'[.\s\-\(\)]', '_', folder_name)
         logging.info(f"Processing folder: {folder_path}, new folder name: {new_folder_name}")
         if not new_folder_name:
             logging.error(f"New folder name is empty for folder: {folder_path}")
