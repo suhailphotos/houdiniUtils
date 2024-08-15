@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='houdiniutils',
-    version='0.1.4',
+    version='0.1.5',
     description='All related tools and utilities',
     author='Suhail',
     author_email='suhailece@gmail.com',
